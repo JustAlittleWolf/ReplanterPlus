@@ -273,7 +273,8 @@ public class ReplanterPlus implements ModInitializer {
 		int maxLevel = 0;
 		int slot = -1;
 
-		PlayerInventory pi = p.getInventory();
+		// ignore for now
+		/*PlayerInventory pi = p.getInventory();
 		Optional<RegistryEntry.Reference<Enchantment>> fortune = p.getWorld().getRegistryManager()
 				.get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.FORTUNE);
 		// Server removed the Fortune enchantment????
@@ -291,7 +292,7 @@ public class ReplanterPlus implements ModInitializer {
 		if (slot != -1) {
 			pi.selectedSlot = slot;
 			mc.interactionManager.syncSelectedSlot();
-		}
+		}*/
 	}
 
 	void sendMissingItemMessage(PlayerEntity player, Item seed) {
