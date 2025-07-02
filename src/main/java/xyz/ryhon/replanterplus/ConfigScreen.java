@@ -192,12 +192,21 @@ public class ConfigScreen extends Screen {
 		}
 
 		@Override
+		public boolean mouseClicked(double mouseX, double mouseY, int button) {
+			if (super.mouseClicked(mouseX, mouseY, button)) {
+				setToggled(!toggled);
+				return true;
+			}
+			return false;
+		}
+
+		@Override
 		public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
 			super.renderWidget(context, mouseX, mouseY, delta);
 			context.drawCenteredTextWithShadow(textRenderer,
-					Text.translatable("replanter.switchbutton.label." + (isToggled() ? "on" : "off")),
+					Text.translatable("replanter.switchbutton.label." + (toggled ? "on" : "off")),
 					getX() + (width / 2), getY() + (height / 2) - (textRenderer.fontHeight / 2),
-					isToggled() ? 0x00ff00 : 0xff0000);
+					toggled ? 0x00ff00 : 0xff0000);
 		}
 	}
 

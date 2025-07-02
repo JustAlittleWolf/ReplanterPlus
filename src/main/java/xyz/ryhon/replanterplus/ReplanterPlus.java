@@ -31,6 +31,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -273,10 +274,9 @@ public class ReplanterPlus implements ModInitializer {
 		int maxLevel = 0;
 		int slot = -1;
 
-		// ignore for now
-		/*PlayerInventory pi = p.getInventory();
-		Optional<RegistryEntry.Reference<Enchantment>> fortune = p.getWorld().getRegistryManager()
-				.get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.FORTUNE);
+		PlayerInventory pi = p.getInventory();
+		Registry<Enchantment> enchantRegistry = p.getWorld().getRegistryManager().getOptional(RegistryKeys.ENCHANTMENT).get();
+		Optional<RegistryEntry.Reference<Enchantment>> fortune = enchantRegistry.getEntry(Enchantments.FORTUNE.getValue());
 		// Server removed the Fortune enchantment????
 		if (!fortune.isPresent())
 			return;
@@ -292,7 +292,7 @@ public class ReplanterPlus implements ModInitializer {
 		if (slot != -1) {
 			pi.selectedSlot = slot;
 			mc.interactionManager.syncSelectedSlot();
-		}*/
+		}
 	}
 
 	void sendMissingItemMessage(PlayerEntity player, Item seed) {
